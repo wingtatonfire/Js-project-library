@@ -72,6 +72,7 @@ form.addEventListener("submit", (event)=> {
     addBookToLibrary(myLibrary, title, author, pages, status)
     container.innerHTML = "";
     displayBook(myLibrary)
+    form.reset()
     modal.close()
 })
 
