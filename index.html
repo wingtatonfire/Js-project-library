@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>My Library</li>
+            <li><button data-open-modal>Add Book</button></li>
+        </ul>
+    </nav>
+    <div class="container">
+    </div>
+
+    <dialog data-modal>
+        <form id="addBookForm" class="card">
+            <label for="title">Book Title:</label><input type="text" id="title" name="title">
+            <label for="author">Author:</label><input type="text" id="author" name="author">
+            <label for="pages">Pages:</label><input type="number" id="pages" name="pages">
+            <div class="radio-container">
+                <input type="radio" name="status" id="read" name="read" value="read">
+                <label for="read">Read</label>
+            </div>
+            <div class="radio-container">
+                <input type="radio" name="status" id="not-read" value="not-read">
+                <label for="not-read">Not read</label>
+            </div>
+            <button type="submit">Add Book</button>
+            <button type="submit" formmethod="dialog" data-close-modal>Cancel</button>
+        </form>
+    </dialog>
+    <script src="script.js"></script>
+</body>
+
+</html>
