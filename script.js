@@ -29,27 +29,57 @@ addBookToLibrary(myLibrary, "The Hunger Games", "Suzanne Collins", 374, "Read")
 addBookToLibrary(myLibrary, "Pride and Prejudice", "Jane Austen", 279, "Read")
 addBookToLibrary(myLibrary, "To Kill a Mockingbird", "Harper Lee", 323, "Not Read")
 
-function displayBook(array) {
-    for (const object of array) {
-        const card = document.createElement("div")
-        const title = document.createElement("p")
-        const author = document.createElement("p")
-        const page = document.createElement("p")
-        const read = document.createElement("p")
+    function displayBook(array) {
+        for (const book of array) {
+            const card = document.createElement("div")
+            const title = document.createElement("p")
+            const author = document.createElement("p")
+            const page = document.createElement("p")
+            const read = document.createElement("p")
+            const deleteButton = document.createElement("button");
+            const readButton = document.createElement("button");
 
-        title.innerHTML = "Book Title:<br>" + object.title
-        author.innerHTML = "Author:<br>" + object.author
-        page.innerHTML = "Pages: " + object.pages
-        read.innerHTML = "Status: " + object.read
-        
-        card.appendChild(title)
-        card.appendChild(author)
-        card.appendChild(page)
-        card.appendChild(read)
 
-        container.appendChild(card)
+            title.innerHTML = "Book Title:<br>" + book.title
+            author.innerHTML = "Author:<br>" + book.author
+            page.innerHTML = "Pages: " + book.pages
+            read.innerHTML = "Status: " + book.read
+            deleteButton.innerHTML = "Delete";
+            readButton.innerHTML = "Change status"
+            
+            card.appendChild(title)
+            card.appendChild(author)
+            card.appendChild(page)
+            card.appendChild(read)
+            card.appendChild(deleteButton)
+            card.appendChild(readButton)
+
+            container.appendChild(card)
+
+            deleteButton.addEventListener("click", () => {
+                const id = myLibrary.findIndex(item => item.id === book.id);
+                if (id !== -1) {
+                    myLibrary.splice(id, 1);
+                }
+
+                container.innerHTML = "";
+                displayBook(myLibrary);
+            })
+
+            readButton.addEventListener("click", () => {
+                const id = myLibrary.findIndex(item => item.id === book.id);
+                if (id !== -1) {
+                    if (myLibrary[id].read === "Read") {
+                        myLibrary[id].read = "Not Read";
+                    } else {
+                        myLibrary[id].read = "Read";
+                    }
+                    read.innerHTML = "Status: " + book.read
+
+                }
+            })
+        }
     }
-}
 
 displayBook(myLibrary)
 
